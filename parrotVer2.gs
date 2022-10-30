@@ -1,11 +1,11 @@
 const ACCESS_TOKEN =
   PropertiesService.getScriptProperties().getProperty("ACCESS_TOKEN");
-const COIN_MARKET_PLACE_API_KEY =
+const COIN_MARKET_CAP_API_KEY =
   PropertiesService.getScriptProperties().getProperty(
-    "COIN_MARKET_PLACE_API_KEY"
+    "COIN_MARKET_CAP_API_KEY"
   );
 const lineReplyURL = "https://api.line.me/v2/bot/message/reply";
-const coinMarketPlaceURL =
+const coinMarketCapURL =
   "https://pro-api.coinmarketcap.com/v1/tools/price-conversion";
 
 function doPost(e) {
@@ -23,10 +23,10 @@ function reply(event) {
     // if the message is "BTC" or "btc", get bitcoin price from CoinMarketCap API
     // もしメッセージがBTCまたはbtcの場合、CoinMarketCap APIにリクエストを送信してビットコインの価格データを取得します。
     const response = UrlFetchApp.fetch(
-      coinMarketPlaceURL + "?amount=1&id=1&convert=JPY",
+        coinMarketCapURL + "?amount=1&id=1&convert=JPY",
       {
         headers: {
-          "X-CMC_PRO_API_KEY": COIN_MARKET_PLACE_API_KEY,
+          "X-CMC_PRO_API_KEY": COIN_MARKET_CAP_API_KEY,
         },
         method: "get",
       }
